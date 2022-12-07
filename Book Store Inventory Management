@@ -1,0 +1,71 @@
+Create table book_details
+(book_name varchar(100), 
+author_name varchar(100), 
+book_description varchar(100), 
+price decimal(7,2),
+in_stock bigint, 
+primary_keyword varchar(10),
+secondary_keyword varchar(10), 
+rating decimal(4,1));
+
+
+mysql> desc book_detail;
++-------------------+--------------+------+-----+---------+-------+
+| Field             | Type         | Null | Key | Default | Extra |
++-------------------+--------------+------+-----+---------+-------+
+| book_name         | varchar(100) | YES  |     | NULL    |       |
+| author_name       | varchar(100) | YES  |     | NULL    |       |
+| book_description  | varchar(100) | YES  |     | NULL    |       |
+| price             | decimal(7,2) | YES  |     | NULL    |       |
+| in_stock          | bigint       | YES  |     | NULL    |       |
+| primary_keyword   | varchar(10)  | YES  |     | NULL    |       |
+| secondary_keyword | varchar(10)  | YES  |     | NULL    |       |
+| rating            | decimal(4,1) | YES  |     | NULL    |       |
++-------------------+--------------+------+-----+---------+-------+
+8 rows in set (0.00 sec)
+
+mysql> select * from book_detail;
++------------------------------+--------------+------------------------------------+---------+----------+-----------------+-------------------+--------+
+| book_name                    | author_name  | book_description                   | price   | in_stock | primary_keyword | secondary_keyword | rating |
++------------------------------+--------------+------------------------------------+---------+----------+-----------------+-------------------+--------+
+| Let us C                     | Yashwant K.  | Learn C programming                |  200.25 |        3 | C               | software          |    4.5 |
+| Let us C++                   | Yashwant K.  | Learn C++ programming              |  230.25 |        5 | C++             | C                 |    4.5 |
+| Java: The complete reference | Mc Graw Hill | 7th edition learn Java programming |  783.00 |        4 | Java            | Javabeans         |    4.5 |
+| Thinking in Java             | Bruce Eckel  | Java programming basics            | 3000.00 |        5 | Java            | JVM               |    4.5 |
++------------------------------+--------------+------------------------------------+---------+----------+-----------------+-------------------+--------+
+4 rows in set (0.02 sec)
+
+mysql> select * from book_detail where primary_keyword like '%java%';
++------------------------------+--------------+------------------------------------+---------+----------+-----------------+-------------------+--------+
+| book_name                    | author_name  | book_description                   | price   | in_stock | primary_keyword | secondary_keyword | rating |
++------------------------------+--------------+------------------------------------+---------+----------+-----------------+-------------------+--------+
+| Java: The complete reference | Mc Graw Hill | 7th edition learn Java programming |  783.00 |        4 | Java            | Javabeans         |    4.5 |
+| Thinking in Java             | Bruce Eckel  | Java programming basics            | 3000.00 |        5 | Java            | JVM               |    4.5 |
++------------------------------+--------------+------------------------------------+---------+----------+-----------------+-------------------+--------+
+2 rows in set (0.00 sec)
+
+mysql> select * from book_detail where primary_keyword like '%java%' and rating > 4;
++------------------------------+--------------+------------------------------------+---------+----------+-----------------+-------------------+--------+
+| book_name                    | author_name  | book_description                   | price   | in_stock | primary_keyword | secondary_keyword | rating |
++------------------------------+--------------+------------------------------------+---------+----------+-----------------+-------------------+--------+
+| Java: The complete reference | Mc Graw Hill | 7th edition learn Java programming |  783.00 |        4 | Java            | Javabeans         |    4.5 |
+| Thinking in Java             | Bruce Eckel  | Java programming basics            | 3000.00 |        5 | Java            | JVM               |    4.5 |
++------------------------------+--------------+------------------------------------+---------+----------+-----------------+-------------------+--------+
+2 rows in set (0.00 sec)
+mysql>
+mysql> select * from book_detail where author_name like '%Yashwant%';
++------------+-------------+-----------------------+--------+----------+-----------------+-------------------+--------+
+| book_name  | author_name | book_description      | price  | in_stock | primary_keyword | secondary_keyword | rating |
++------------+-------------+-----------------------+--------+----------+-----------------+-------------------+--------+
+| Let us C   | Yashwant K. | Learn C programming   | 200.25 |        3 | C               | software          |    4.5 |
+| Let us C++ | Yashwant K. | Learn C++ programming | 230.25 |        5 | C++             | C                 |    4.5 |
++------------+-------------+-----------------------+--------+----------+-----------------+-------------------+--------+
+2 rows in set (0.00 sec)
+
+mysql> select * from book_detail where book_name = 'Let us C';
++-----------+-------------+---------------------+--------+----------+-----------------+-------------------+--------+
+| book_name | author_name | book_description    | price  | in_stock | primary_keyword | secondary_keyword | rating |
++-----------+-------------+---------------------+--------+----------+-----------------+-------------------+--------+
+| Let us C  | Yashwant K. | Learn C programming | 200.25 |        3 | C               | software          |    4.5 |
++-----------+-------------+---------------------+--------+----------+-----------------+-------------------+--------+
+1 row in set (0.00 sec)
