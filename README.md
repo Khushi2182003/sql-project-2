@@ -1,1 +1,1 @@
-# sql-project-2
+# DBMS PROJECT-2
